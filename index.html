@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Top 10 Resorts in Rizal</title>
+<style>
+body {
+  margin: 0;
+  font-family: "Franklin Gothic Book", sans-serif;
+  background: url('10.jpg') repeat; /* allows smooth movement */
+  background-size: cover;
+  color: #fff;
+  animation: moveBg 120s linear infinite; /* slow movement */
+}
+
+@keyframes moveBg {
+  0% { background-position: 0 50; }
+  50%{ background-position: 100% 50%; }
+  100% { background-position: 0% 50%; } /* moves horizontally */
+}
+
+.overlay {
+  background-color: rgba(0,0,0,0.6);
+  min-height: 100vh;
+  padding: 60px 20px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 50px;
+  font-size: 3em;
+  color: #ffd700;
+  text-shadow: 2px 2px 8px #000;
+}
+.resort-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 40px;
+  max-width: 1400px;
+  margin: auto;
+  justify-items: center;
+}
+.resort {
+  width: 380px;
+  height: 380px;
+  background-color: rgba(255,255,255,0.15);
+  border-radius: 15px;
+  overflow: hidden;
+  text-align: center;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+  transition: transform 0.3s, background-color 0.3s;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.resort:hover {
+  transform: scale(1.05);
+  background-color: rgba(255,255,255,0.25);
+}
+.resort img {
+  width: 100%;
+  height: 150%;
+  object-fit: cover;
+}
+.resort h2 {
+  font-size: 1.2em;
+  color: #ffd700;
+  margin-bottom: 20px;
+}
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 10;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.9);
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+}
+.modal-content {
+  background-color: rgba(255,255,255,0.1);
+  padding: 25px;
+  border-radius: 15px;
+  max-width: 800px;
+  width: 100%;
+  color: #fff;
+  position: relative;
+  text-align: center;
+}
+.modal h2 { color: #ffd700; }
+.modal p { line-height: 1.6; }
+.modal img {
+  width: 180px;
+  height: 120px;
+  object-fit: cover;
+  margin: 10px;
+  border-radius: 8px;
+  border: 2px solid #ffd700;
+}
+.close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  color: #ffd700;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.close:hover { color: #fff; }
+.book-btn {
+  display: inline-block;
+  background-color: #ffd700;
+  color: #000;
+  padding: 12px 25px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1em;
+  margin-top: 20px;
+  transition: 0.3s;
+}
+.book-btn:hover { background-color: #ffcc00; transform: scale(1.1); }
+</style>
+</head>
+<body>
+
+<div class="overlay">
+  <h1>Top 10 Resorts in Rizal</h1>
+  <div class="resort-list">
+    <div class="resort" onclick="openModal('resort1')"><img src="bakasyunan.jpg"><h2>1. Bakasyunan Resort & Conference Center</h2></div>
+    <div class="resort" onclick="openModal('resort2')"><img src="loreland.jpg"><h2>2. Loreland Farm Resort</h2></div>
+    <div class="resort" onclick="openModal('resort3')"><img src="boso-boso.jpg"><h2>3. Boso-boso Highlands Resort & Hotel</h2></div>
+    <div class="resort" onclick="openModal('resort4')"><img src="Ciudad Christhia.jpg"><h2>4. Ciudad Christhia Resort</h2></div>
+    <div class="resort" onclick="openModal('resort5')"><img src="Cristina Villas.jpg"><h2>5. Cristina Villas Mountain Resort & Hotel</h2></div>
+    <div class="resort" onclick="openModal('resort6')"><img src="LeBlanc.jpg"><h2>6. LeBlanc Hotel & Resort</h2></div>
+    <div class="resort" onclick="openModal('resort7')"><img src="luljetta.jpg"><h2>7. Luljetta's Hanging Garden Spa</h2></div>
+    <div class="resort" onclick="openModal('resort8')"><img src="Martessem.jpg"><h2>8. Martessem Mountain Resort</h2></div>
+    <div class="resort" onclick="openModal('resort9')"><img src="SierraMadre.jpg"><h2>9. Sierra Madre Mountain Resort-Hotel & Conference Center</h2></div>
+    <div class="resort" onclick="openModal('resort10')"><img src="timberland.jpg"><h2>10. Timberland Highlands Resort</h2></div>
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+
+  const resorts = [
+    {id:'resort1',name:'Bakasyunan Resort & Conference Center',location:'Marilaque Highway, Tanay, Rizal',contact:'0967 400 2717', description: "A scenic nature gateway offering team-building facilities, swimming pools, adventure activities, and relaxing views of Tanay's mountains." , images:['bakasyunanpool.jpg','bakasyunanroom.jpg','bakasyunaninterior.jpg'],link:'https://www.google.com/search?q=Bakasyunan+Resort+Tanay+Rizal'},
+    {id:'resort2',name:'Loreland Farm Resort',location:'Loreland Road, Antipolo, 1870 Rizal',contact:'0917 835 2000', description: "A family-friendly resort with pools, cottages, and wellness facilities located in the peaceful hills of Antipolo City." , images:['lorelandpool.jpg','lorelandroom.jpg','lorelandinterior.jpg'],link:'https://www.google.com/search?q=Loreland+Farm+Resort+Antipolo'},
+    {id:'resort3',name:'Boso-boso Highlands Resort & Hotel',location:'Antipolo, Rizal',contact:'(02) 8703 5020', description: "A quiet mountain resort known for its cool breeze, panaromic views, pools, and affordable accommoditions.", images:['boso-bosopool.jpg','boso-bosoroom.jpg','boso-bosointerior.jpg'],link:'https://www.google.com/search?q=Boso-Boso+Highlands+Resort+Hotel+Antipolo'},
+    {id:'resort4',name:'Ciudad Christhia Resort',location:'San Mateo, Rizal',contact:'0932 997 5945', description: "A popular waterpark-style resort featuring large wave pools, slides, and spacious picnic areas perfect for family outing.", images:['Ciudad ChristhiaPool.jpg','Ciudad ChristhiaRoom.jpg','Ciudad ChristhiaInterior.jpg'],link:'https://www.google.com/search?q=Ciudad+Christhia+Resort+San+Mateo+Rizal'},
+    {id:'resort5',name:'Cristina Villas Mountain Resort & Hotel',location:'Santa Cruz, Antipolo, Rizal',contact:'0917 804 3962', description: "A relaxing resort on the Antipolo hillside, offering pools, event venues, spa, services, and a scenic city view." ,  images:['Cristina Villaspool.jpg','Cristina Villasroom.jpg','Cristina VillasInterior.jpg'],link:'https://www.google.com/search?q=Cristina+Villas+Mountain+Resort+Antipolo'},
+    {id:'resort6',name:'LeBlanc Hotel & Resort',location:'Antipolo, Rizal',contact:'(02)8518 9303', description: "A modern boutique resort providing  stylish rooms, elegant amenities, a pool, and excellent hospitality in Antippolo City." , images:['LeBlancpool.jpg','LeBlancroom.jpg','LeBlancinterior.jpg'],link:'https://www.google.com/search?q=LeBlanc+Hotel+and+Resort+Antipolo'},
+    {id:'resort7',name:"Luljetta's Hanging Garden Spa",location:'Antipolo, Rizal',contact:'0977 837 2242', description: "A unique wellness santuary featuring mountain-side spas, hydrotherapy pools and calming overlooking views for a full relaxation experience." , images:['luljettapool.jpg','luljettaroom.jpg','luljettainterior.jpg'],link:'https://www.google.com/search?q=Luljettas+Hanging+Garden+Spa+Antipolo'},
+    {id:'resort8',name:'Martessem Mountain Resort',location:'Tanay, Rizal',contact:'0919 075 0448', description: "A peaceful resort in Tanay offering wide open spaces, mountain views, cool climate, and relaxing private villas.", images:['Martessempool.jpg','Martessemroom.jpg','Martesseminterior.jpg'],link:'https://www.google.com/search?q=Martessem+Resort+Tanay+Rizal'},
+    {id:'resort9',name:'Sierra Madre Mountain Resort-Hotel & Conference Center',location:'Tanay, Rizal',contact:'(02)8475 7320', description: "A nature-themed resort with stunning views of the Sierra Madre mountain range, perfect for retreats, conferences, and sightseeing.",images:['SierraMadrepool.jpg','SierraMadreroom.jpg','SierraMadreinterior.jpg'],link:'https://www.google.com/search?q=Sierra+Madre+Mountain+Resort+Tanay'},
+    {id:'resort10',name:'Timberland Highlands Resort',location:'San Mateo, Rizal',contact:'(02)8891 8288',description:" A high-altitude leisure hotel offering premium accomodations, cool weather, outdoor activities, and a breathtaking view of Metro Manila." , images:['timberlandpool.jpg','timberlandroom.jpg','timberlandinterior.jpg'],link:'https://www.google.com/search?q=Timberland+Highlands+Resort+San+Mateo'}
+  ];
+
+  resorts.forEach(r => {
+    const modal = document.createElement('div');
+    modal.id = r.id;
+    modal.className = 'modal';
+    modal.innerHTML = `
+      <div class="modal-content">
+        <span class="close" onclick="closeModal('${r.id}')">&times;</span>
+        <h2>${r.name}</h2>
+        <p><strong>Location:</strong> ${r.location}</p>
+        <p><strong>Contact:</strong> ${r.contact}</p>
+	<p>${r.description}</p>
+        <div>${r.images.map(img => `<img src="${img}" alt="${r.name} image">`).join('')}</div>
+        <a href="${r.link}" target="_blank" class="book-btn">Visit Website</a>
+      </div>
+    `;
+    document.body.appendChild(modal);
+  });
+
+  window.openModal = function(id) {
+    document.getElementById(id).style.display = 'flex';
+  };
+  window.closeModal = function(id) {
+    document.getElementById(id).style.display = 'none';
+  };
+  window.onclick = function(e) {
+    if (e.target.classList.contains('modal')) e.target.style.display = 'none';
+  };
+
+});
+</script>
+
+</body>
+</html>
